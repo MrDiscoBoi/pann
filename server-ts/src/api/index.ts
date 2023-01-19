@@ -1,12 +1,10 @@
 import Router from 'koa-router'
+import announcement from './Announcement'
+import user_result from './Result'
 
-const router = new Router()
+const apiRouter = new Router()
 
-router.get('/', async(ctx , next) =>{
-    ctx.body = {
-        type: 'ผลคะแนน',
-        data: 'ได้คะแนน  79/100'
-    }
-} )
+apiRouter.use('/api/announce', announcement.routes())
+apiRouter.use('/api/score', user_result.routes())
 
-export default router
+export default apiRouter
