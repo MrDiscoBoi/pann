@@ -1,12 +1,12 @@
 import dbConnectionInfo from './dbConnect.json'
 
-const isProd = process.env.NODE_ENV == 'production'
+const isProd = process.env.NODE_ENV = 'production'
 let appConfig = {
-  isProd,
-  isDev: !isProd,
-  clearDataBeforeLodingFixture: isProd ? false : true,
-  dbConnectionInfo,
-  ssoIssuer: 'http://localhost:8888/realms/master',
+    isProd,
+    isDev: !isProd ,
+    clearDataBeforeLoad: isProd? false : true ,
+    dbConnectionInfo,
+    ssoIssuer: 'http://localhost:8888/realms/master',
 }
 
-export default appConfig;
+export default appConfig
