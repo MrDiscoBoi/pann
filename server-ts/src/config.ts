@@ -1,4 +1,4 @@
-import dbConnectionInfo from './dbConnect.json'
+import dbConnectionInfo from './db-conn.json'
 
 const isProd = process.env.NODE_ENV = 'production'
 let appConfig = {

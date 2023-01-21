@@ -16,5 +16,5 @@ app.use(apiRouter.routes());
 (async () => {
   await loadFixtures(appConfig.clearDataBeforeLoad)
   //await initSsoCert()
-  app.listen(3000)
+  app.listen(8000)
 })();

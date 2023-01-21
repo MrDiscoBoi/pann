@@ -4,7 +4,7 @@ import user_result from './Result'
 
 const apiRouter = new Router()
 
-apiRouter.use('/api/announce', announcement.routes())
-apiRouter.use('/api/score', user_result.routes())
+apiRouter.use('/api/announcement', announcement.routes())
+apiRouter.use('/api/userResult', user_result.routes())
 
 export default apiRouter
