@@ -1,6 +1,7 @@
 import Koa from 'koa'
 import { koaBody } from 'koa-body'
 import cors from '@koa/cors'
+import { initSsoCert } from "./auth"
 
 import loadFixtures from './fixtures'
 import apiRouter from './api'
@@ -15,6 +16,6 @@ app.use(apiRouter.routes());
 
 (async () => {
   await loadFixtures(appConfig.clearDataBeforeLoad)
-  //await initSsoCert()
+  await initSsoCert()
   app.listen(8000)
 })();
