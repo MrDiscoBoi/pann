@@ -1,5 +1,5 @@
-import Announcement from "../models/anouncement";
-import { IRepository } from "./Irepository";
+import Announcement from "../models/Announcement";
+import { IRepository } from "./IRepository";
 
 export class AnnouncementRepository implements IRepository<Announcement> {
     async getAll(): Promise<Announcement[] | null> {
