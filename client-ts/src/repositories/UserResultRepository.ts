@@ -1,18 +1,31 @@
 import { IRepository } from "./IRepository"
+import UserResult from "../models/UserResult"
+import config,{ ax } from "../config"
 
-export default interface UserResult{
-    id: number
-    announcementId: number
-    result: string
-    remark: string
-    updateDateTime: Date
-    userCode: string
-  }
-
+export interface UserResultFilter {
+    keyword?: string
+    isPinned?: boolean
+}
 export class UserResultRepository implements IRepository<UserResult> {
-    async getAll(): Promise<UserResult[] | null> {
-        return [
-            { id: 1,announcementId: 1, result: '24.5', remark: 'โดนหักคะแนนจากการเข้าสอบสาย', updateDateTime: new Date('2022-09-07 09:12:31'), userCode: '6510110150'}
-        ]
+    urlPrefix = config.remoteRepositoryUrlPrefix
+    async getAll(filter:UserResultFilter): Promise<UserResult[] | null> {
+        const params = {...filter}
+        const resp = await ax.get<UserResult[]>(`${this.urlPrefix}/userResult`, { params })
+        return resp.data
     }
+    async get(id: string|number): Promise<UserResult | null> {
+        const resp = await ax.get<UserResult>(`${this.urlPrefix}/UserResult/${id}}`)
+        return resp.data 
+     }
+     async create(entity: Partial<UserResult>): Promise<UserResult | null> {
+         const resp = await ax.post<UserResult>(`${this.urlPrefix}/userResult`, entity)   
+         return resp.data
+       }   
+     async update(entity: Partial<UserResult>): Promise<UserResult | null> {
+         const resp = await ax.put<UserResult>(`${this.urlPrefix}/userResult/${entity.id}`, entity)    
+         return resp.data
+       }   
+     async delete(id: string|number): Promise<void> {
+         await ax.delete<void>(`${this.urlPrefix}/userResult/${id}`)
+       }    
 }
