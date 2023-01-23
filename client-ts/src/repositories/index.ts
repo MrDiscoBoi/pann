@@ -1,9 +1,8 @@
-import { AnnouncementRepository } from "./AnnouncementRepository"
-import { UserResultRepository } from "./UserResultRepository"
+import { AnnouncementRepository } from "./AnnouncementRepository";
+import { UserResultRepotiory } from "./UesrResultRepository";
 
 const repositories = {
-  announcements: new AnnouncementRepository(),
-  userResults: new UserResultRepository()
+    announcements: new AnnouncementRepository(),
+    userResult: new UserResultRepotiory()
 }
-
 export default repositories
