@@ -19,7 +19,7 @@ function AnnouncementList() {
     let params = {
       keyword: searchFilter
     }
-    const result = await Repo.announcement.getAll(params)
+    const result = await Repo.announcements.getAll(params)
     if (result) {
       if (announcementList.length) {
         setAnnouncementList([])
@@ -34,7 +34,7 @@ function AnnouncementList() {
 
   const onCreateAnnouncement = async (ann: Partial<Announcement>) => {
     ann.userCode = auth.user?.profile.preferred_username
-    await Repo.announcement.create(ann)
+    await Repo.announcements.create(ann)
     fetchAnnouncementList()
     setCreateFormPopup(false)
   }

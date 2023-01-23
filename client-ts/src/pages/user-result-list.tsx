@@ -23,7 +23,7 @@ function UserResultList() {
     if (selectFilter) {
       params.isPinned = true
     }
-    const result = await Repo.UserResult.getAll(params)
+    const result = await Repo.userResults.getAll(params)
     if (result) {
       if (userResultList.length) {
         setUserResultList([])
