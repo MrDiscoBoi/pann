@@ -1,64 +1,64 @@
-import { Box } from "@mui/system";
-import { Button, Card, CardActionArea, CardActions, CardContent, CardHeader, colors, Dialog, DialogActions, DialogContent, DialogTitle, Grid, IconButton, Tooltip, Typography } from "@mui/material"
 import { useState } from "react";
+import { Button, Card, CardActionArea, CardActions, CardContent, CardHeader, Dialog, DialogActions, DialogContent, DialogTitle, Grid, IconButton, Tooltip, Typography } from "@mui/material";
+import { Box } from "@mui/system";
+import { PushPin, Close, CheckCircle } from '@mui/icons-material/';
 import UserResult, { ResultType } from "../models/UserResult";
 import Repo from '../repositories'
-import { CheckCircle, PushPin, Close } from "@mui/icons-material";
-import { url } from "inspector";
-
 
 interface Prop {
-    userResult: UserResult;
-    onUpdateUserResult: (userResult: UserResult) => void;
+  userResult: UserResult;
+  onUpdateUserResult: (userResult: UserResult) => void;
 }
 
 function UserResultCard(props: Prop) {
-    const userResult = props.userResult
-    const [popup, setPopup] = useState(false)
+  const userResult = props.userResult
+  const [popup, setPopup] = useState(false);
 
-    const onOpenPopup = async () => {
-        if(!userResult.viewDateTime){
-            const result = await Repo.userResult.view(userResult.id)
-            if(result) {
-                props.onUpdateUserResult(result)
-                setPopup(true)
-            }
-        }else{
-            setPopup(true)
-        }
+  const onOpenPopup = async () => {
+    if(!userResult.viewDateTime){
+      const result = await Repo.userResults.view(userResult.id)
+      if(result) {
+        props.onUpdateUserResult(result)
+        setPopup(true)
+      }
+    }else{
+      setPopup(true)
     }
+  };
 
-    const handleAcknowledge = async () => {
-        const result = await Repo.userResult.acknowledge(userResult.id)
-        if(result) {
+  const handleAcknowledge = async () => {
+    const result = await Repo.userResults.acknowledge(userResult.id)
+    if(result) {
+      props.onUpdateUserResult(result)
+    }
+  };
+
+  const handleToggleIsPinned = async () => {
+    if(userResult.isPinned){
+      const result = await Repo.userResults.toggleIsPinned(userResult.id,0)
+      if(result){
           props.onUpdateUserResult(result)
-        }
-    }
+      }
+      return
+  }
+  const result = await Repo.userResults.toggleIsPinned(userResult.id,1)
+  if(result){
+      props.onUpdateUserResult(result)
+  }
+}
 
-    const handleToggleIsPinned = async () => {
-        const result = await Repo.userResult.toggleIsPinned(userResult.id)
-        if(result) {
-          props.onUpdateUserResult(result)
-        }
-    }
 
-    const getConditionalRemark = () => {
-        if(userResult.resultType === ResultType.POSITIVE){
-            return userResult.announcement.remarkIfPositive
-        }else if(userResult.resultType === ResultType.NEGATIVE){
-            return userResult.announcement.remarkIfNegative
-        }
+  const getConditionalRemark = () => {
+    if(userResult.resultType === ResultType.POSITIVE){
+      return userResult.announcement.remarkIfPositive
+    }else if(userResult.resultType === ResultType.NEGATIVE){
+      return userResult.announcement.remarkIfNegative
     }
+  }
 
-    return (
+  return (
     <Box>
-      <Card sx={{ maxWidth: 500, height: 250,backgroundColor:"#D0EEF7" ,
-        transition: 'all 0.2s ease-in-out',
-        '&:hover': {
-            backgroundColor: '#96E8FF',
-            transform: 'scale(1.05)',
-        } 
-      }}>
+      <Card sx={{ maxWidth: 500, height: 250 }}>
         <CardHeader
           sx={{ height: '30%' }}
           title={userResult.announcement?.topic}
@@ -127,4 +127,4 @@ function UserResultCard(props: Prop) {
   )
 }
 
-export default UserResultCard
+export default UserResultCard;

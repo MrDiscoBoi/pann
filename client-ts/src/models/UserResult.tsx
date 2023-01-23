@@ -1,4 +1,4 @@
-import Announcement from "./announcement"
+import Announcement from "./Announcement"
 
 export enum ResultType{
   NEGATIVE = -1,
