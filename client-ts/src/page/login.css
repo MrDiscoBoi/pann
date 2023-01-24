@@ -1,0 +1,113 @@
+.login-container {
+    background-image: url("../images/loginPage.png");
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.logo-button-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.content-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.logo-container {
+    text-align: center;
+    flex: 1;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.logo-img {
+    width: 25%;
+    height: 25%;
+    align-items: center;
+    opacity: 1;
+}
+
+.box-container {
+    background-color: rgba(160, 233, 175, 0.477);
+    border: 1px solid inherit;
+    padding: 65px;
+    margin: auto;
+    width: 50%;
+    display: flex-end;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 25px ;
+}
+  
+.button-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 7px;
+    opacity: 100;
+}
+  
+.login-button:hover {
+    background-color: rgb(18, 165, 229);
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+    opacity: 0.85;
+}
+  
+.login-button {
+    background-color: rgb(56, 97, 52);
+    color: #ffffff;
+    padding: 10px 20px;
+    border-radius: 6px;
+    width: 20%;
+    height: 100%;
+    font-size: 25px;
+    font-weight: bold;
+    font-family: Montserrat;
+    opacity: 1;
+    transition: background-color 0.6s ease-in-out, color 0.3s ease-in-out;
+}
+  
+.logo-img {
+    width: 60%;
+    height: 60%;
+}
+  
+.center-button {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+  
+.content-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+  
+.text-content-wrapper {
+    margin-bottom: 50px;
+    text-align: center;
+}
+  
+.text-content {
+    font-family: Montserrat;
+    font-size: 25px;
+    margin-bottom: 10px;
+}
+

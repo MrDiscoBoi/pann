@@ -8,6 +8,7 @@ import PannAppBar from "../components/pann-app-bar";
 import AnnouncementForm from "../components/announcement-form";
 import Announcement from "../models/Announcement";
 import Repo from '../repositories'
+import "./bg.css"
 
 function AnnouncementList() {
   const auth = useAuth();
@@ -49,38 +50,37 @@ function AnnouncementList() {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <PannAppBar></PannAppBar>
-      <TextField sx={{ m: 2, minWidth: 120 }} label="Search" placeholder="Topic, Description" variant="outlined" value={searchFilter} onChange={handleChangeSearchFilter} />
-      <Button sx={{ m: 2, float: 'right' }} variant="contained" onClick={() => setCreateFormPopup(true)}>
+    <PannAppBar></PannAppBar>
+    <TextField sx={{ m: 2, minWidth: 120 }} label="Search" placeholder="Topic, Description" variant="outlined" value={searchFilter} onChange={handleChangeSearchFilter}/>
+    <Button sx={{ m: 2, float: 'right' }} variant="contained" onClick={() => setCreateFormPopup(true)}>
         <Add /> Announcement
-      </Button>
-      {announcementList.length
+    </Button>
+    {announcementList.length
         ?
         <Grid container sx={{ p: 2 }} spacing={{ xs: 2, md: 3 }} columns={{ xs: 2, sm: 8, md: 12, lg: 12, xl: 10 }}>
-          {announcementList.map((ann, index) =>
-            <Grid item xs={2} sm={4} md={4} lg={3} xl={2} key={index}>
-             <AnnouncementCard announcement={ann} callbackFetchFn={fetchAnnouncementList} onUpdateAnnouncement={onUpdateAnnouncement}></AnnouncementCard>
-            </Grid>
-          )}
+            {announcementList.map((ann, index) =>
+                <Grid item xs={2} sm={4} md={4} lg={3} xl={2} key={index}>
+                    <AnnouncementCard announcement={ann} callbackFetchFn={fetchAnnouncementList} onUpdateAnnouncement={onUpdateAnnouncement}></AnnouncementCard>
+                </Grid>
+            )}
         </Grid>
         :
         <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: 400 }}>
-          <Typography variant="body2" color="text.secondary">No Announcement Found</Typography>
+            <Typography variant="body2" color="text.secondary">No Announcement Found</Typography>
         </Box>
-      }
+    }
 
-
-      <Dialog PaperProps={{ sx: { minWidth: "50%" } }} open={createFormPopup} onClose={() => setCreateFormPopup(false)}>
+    <Dialog PaperProps={{ sx: { minWidth: "50%" } }} open={createFormPopup} onClose={() => setCreateFormPopup(false)}>
         <DialogTitle sx={{ display: 'flex', justifyContent: 'space-between' }}>
-          Create Announcement
-          <IconButton onClick={() => setCreateFormPopup(false)}>
-            <Close />
-          </IconButton>
+            Create Announcement
+            <IconButton onClick={() => setCreateFormPopup(false)}>
+                <Close />
+            </IconButton>
         </DialogTitle>
         <AnnouncementForm announcement={{}} callbackFn={onCreateAnnouncement}></AnnouncementForm>
-      </Dialog>
-    </Box>
-  );
+    </Dialog>
+</Box>
+)
 }
 
-export default AnnouncementList;
+export default AnnouncementList

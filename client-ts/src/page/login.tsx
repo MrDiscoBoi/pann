@@ -1,10 +1,8 @@
 import { useEffect } from 'react';
-import { Button } from '@mui/material';
-import { Box } from '@mui/system';
-import { Login as LoginIcon } from '@mui/icons-material';
 import { useAuth } from "react-oidc-context";
 import { Navigate, useLocation } from 'react-router-dom';
 import { useAppCtx } from '../AppProvider';
+import "./login.css"
 
 function Login() {
 
@@ -52,12 +50,22 @@ function Login() {
   }
 
   return (
-    <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: 500 }}>
-      <Button variant='contained' sx={{ fontSize: 'large' }} onClick={() => void auth.signinRedirect()}>
-        <LoginIcon sx={{ mr: 1 }} />
-        Log in
-      </Button>
-    </Box>
+    <div className="login-container">
+        <div className="box-container">
+            <div className="logo-container">
+                <img src={require('../images/psu_th.png')} align-item= "center" alt="Logo" className="logo-img" />
+            </div>
+            <div className="text-content-wrapper">
+                <div className="text-content">PSU-Announcement</div>
+            </div>
+            <div className="button-container">
+                <button className="login-button" onClick={() => void auth.signinRedirect()}>
+                    Login
+                </button>
+            </div>
+        </div>
+    </div>
+
   );
 };
 
